@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+
+  .theme-glass {
+    --background: 210 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100% / 0.7;
+    --card-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1% / 0.5;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1% / 0.5;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --border: 214.3 31.8% 91.4%;
+  }
+
+  .theme-midnight {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 222 47% 11%;
+    --card-foreground: 213 31% 91%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+  }
+
+  .theme-cyberpunk {
+    --background: 230 100% 2%;
+    --foreground: 180 100% 50%;
+    --card: 230 100% 5%;
+    --card-foreground: 180 100% 50%;
+    --popover: 230 100% 5%;
+    --popover-foreground: 180 100% 50%;
+    --primary: 320 100% 50%; /* Neon Pink */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 100% 10%;
+    --secondary-foreground: 180 100% 50%;
+    --muted: 230 100% 10%;
+    --muted-foreground: 180 100% 50% / 0.7;
+    --accent: 60 100% 50%; /* Neon Yellow */
+    --accent-foreground: 0 0% 0%;
+    --border: 180 100% 50% / 0.3;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Dynamic Background Animations */
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes mesh {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-effects {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  transition: all 1s ease-in-out;
+}
+
+.theme-default .bg-effects {
+  background: radial-gradient(circle at 50% 50%, hsl(var(--secondary) / 0.3), transparent 70%);
+}
+
+.theme-glass .bg-effects {
+  background: linear-gradient(-45deg, #e3f2fd, #fce4ec, #f3e5f5, #e8eaf6);
+  background-size: 400% 400%;
+  animation: mesh 15s ease infinite;
+}
+
+.theme-midnight .bg-effects {
+  background: #020617;
+}
+
+.theme-midnight .bg-effects::before,
+.theme-midnight .bg-effects::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1e1b4b 0%, transparent 70%);
+  filter: blur(80px);
+  animation: blob 20s infinite alternate;
+}
+
+.theme-midnight .bg-effects::after {
+  right: -100px;
+  top: -100px;
+  background: radial-gradient(circle, #312e81 0%, transparent 70%);
+  animation-delay: -5s;
+}
+
+.theme-cyberpunk .bg-effects {
+  background: #050505;
+}
+
+.theme-cyberpunk .bg-effects::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, #ffffff05 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff05 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+.theme-cyberpunk .bg-effects::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(from 180deg at 50% 50%, #ff00ff20, #00ffff20, #ff00ff20);
+  filter: blur(120px);
+  transform: translate(-50%, -50%);
+  animation: mesh 10s linear infinite;
+}
